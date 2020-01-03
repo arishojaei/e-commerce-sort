@@ -1,0 +1,171 @@
+// Main Scss Style
+// ----------------------------------------
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=swap');
+@import "variables";
+@import "mixins";
+
+html {
+  height: 101%;
+}
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+// Products
+// ----------------------------------------
+.product-list {
+
+  @include down-992 {
+    column-count: 2;
+  }
+
+  @include down-768 {
+    column-count: 1;
+  }
+}
+
+  // Search
+// ----------------------------------------
+.search {
+
+  &-name {
+    display: flex;
+    position: relative;
+
+    button {
+      position: absolute;
+      right: 8px;
+      top: 6px;
+      -webkit-transform: scale(-1, 1);
+      transform: scale(-1, 1);
+      background: transparent;
+      border: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      border-radius: 100%;
+      transition: $transition;
+      opacity: 0;
+
+      img {
+        width: 24px;
+        height: auto;
+      }
+
+      &.show {
+        opacity: .5;
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid transparent;
+      padding: 15px;
+      background: #f3f3f3;
+      border-radius: $radius;
+
+      &:focus {
+        outline: none;
+        background: #fff;
+        border: 1px solid #eee;
+      }
+    }
+  }
+
+  &-price {
+    width: 100%;
+    border: 1px solid transparent;
+    padding: 15px;
+    background: #f3f3f3;
+    border-radius: $radius;
+
+    &:focus {
+      outline: none;
+      background: #fff;
+      border: 1px solid #eee;
+    }
+  }
+}
+
+// Loading
+// ----------------------------------------
+.loading {
+  display: inline-block;
+  position: relative;
+
+  &.content-loading {
+    height: 300px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    margin: 8px;
+    border: 3px solid $primary-color;
+    border-radius: 50%;
+    animation: loading 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: $primary-color transparent transparent transparent;
+
+    &:nth-child(1) {
+      animation-delay: -0.45s;
+    }
+
+    &:nth-child(2) {
+      animation-delay: -0.3s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: -0.15s;
+    }
+  }
+}
+
+// Cards
+// ----------------------------------------
+.card {
+  overflow: hidden;
+
+  .price {
+    display: flex;
+    justify-content: space-between;
+
+    &-cost {
+      font-weight: bold;
+      color: $primary-color;
+    }
+
+    &-color {
+      display: block;
+      width: 20px;
+      height: 20px;
+      border-radius: 100px;
+      border: 1px solid #ddd
+    }
+  }
+
+  .btn {
+    border-radius: 0;
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
